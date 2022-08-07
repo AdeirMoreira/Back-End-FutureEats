@@ -1,0 +1,8 @@
+-- Active: 1654804493662@@35.226.146.116@3306@silveira-21814323-adeir-maia
+CREATE TABLE FutureEats_User (
+    id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    cpf VARCHAR(255) NOT NULL UNIQUE,
+    hashPassword VARCHAR(255) NOT NULL
+);
