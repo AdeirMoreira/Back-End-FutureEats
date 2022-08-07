@@ -11,3 +11,5 @@ export class HashManager {
         return compareSync(plainText,cypherText)
     }
 }
+
+export default new HashManager()

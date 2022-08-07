@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken'
 import { AuthenticationData } from '../Model/types';
 
-export default class Authentication {
+export class Authentication {
     generateToken = (id: AuthenticationData):string => {
         const token = jwt.sign(
         {
@@ -20,3 +20,5 @@ export default class Authentication {
         return data.id.id
     }
 } 
+
+export default new Authentication()
