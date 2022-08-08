@@ -3,9 +3,9 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-    "name": "hulk5",
-	"email": "hulk5@ghulk",
-	"cpf": "220.370.860-67",
+    "name": "CucaBol",
+	"email": "cucabol@email.com",
+	"cpf": "202.070.860-67",
 	"password": "abc123"
 }
 
@@ -17,7 +17,7 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-    "email": "hulk5@ghulk", 
+    "email": "hulk7@hulk", 
     "password": "abc123"
 }
 
@@ -35,11 +35,30 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "name": "Brisa",
-    "email": "BrisaBituca@gmail.com",
-    "cpf": "421.235.068-05"
+    "name": "Hulk",
+    "email": "hulk7@hulk",
+    "cpf": "220.370.860-68"
 }
 
+### ADD AND CHANGE ADRESS
+PUT http://localhost:3003/adress
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "street": "R. Afonso Braz",
+    "number": "200",
+    "neighbourhood": "Vila N. Conceição",
+    "city": "São Paulo",
+    "state": "SP",
+    "complement": "71"
+}
+
+### Full adress
+GET http://localhost:3003/adress/full
+Authorization: {{token}}
+
 ###
+
 
 

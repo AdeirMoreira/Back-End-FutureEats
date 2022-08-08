@@ -1,5 +1,5 @@
 import { CustonError } from "../../Model/CustonError/CustonError"
-import { LoginInputDTO, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
+import { AdressDTO, LoginInputDTO, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
 
 
 export class InputsValidation {
@@ -20,10 +20,20 @@ export class InputsValidation {
     }
 
     Update = (inputs:UpdateInputDTO):void => {
+        this.token(inputs.token)
         this.name(inputs.name)
         this.email(inputs.email)
         this.cpf(inputs.cpf)
+        
+    }
+
+    Adress = (inputs:AdressDTO):void => {
         this.token(inputs.token)
+        this.AdressData(inputs)
+    }
+
+    fullAdress = (token:string):void => {
+        this.token(token)
     }
     
     private token = (token:string | undefined):void => {
@@ -69,6 +79,16 @@ export class InputsValidation {
     private checkEmailFormat = (email:string):boolean => {
         const emailValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/; 
         return emailValid.test(email)
+    }
+
+    private AdressData = (inputs:AdressDTO):void => {
+        delete inputs.token
+        Object.values(inputs).forEach(value => {
+                if(!value || typeof(value) !== 'string') {
+                    throw new CustonError(422,'Endereço inválido')
+                }
+            }
+        )
     }
 }
 

@@ -6,3 +6,15 @@ CREATE TABLE FutureEats_User (
     cpf VARCHAR(255) NOT NULL UNIQUE,
     hashPassword VARCHAR(255) NOT NULL
 );
+CREATE TABLE FutureEats_Adress (
+    id VARCHAR(255) PRIMARY KEY,
+    userId VARCHAR(255) NOT NULL,
+    CEP VARCHAR(255) NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    number VARCHAR(255) NOT NULL,
+    neighbourhood VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    complement VARCHAR(255) NOT NULL,
+    FOREIGN KEY (userId) REFERENCES FutureEats_User(id)
+);
