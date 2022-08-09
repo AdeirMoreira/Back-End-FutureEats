@@ -35,9 +35,9 @@ export class UserBusiness {
                 name: user.name,
                 email: user.email,
                 cpf: user.cpf,
-                hasAddress: await this.checkAdress(token)
+                hasAddress: false
             }
-            return {user:Response,token}
+            return { user:Response ,token }
         } catch (error:any) {
             throw new CustonError(error.statusCode, error.message)
         }
@@ -62,7 +62,7 @@ export class UserBusiness {
                 cpf: user.cpf,
                 hasAddress: await this.checkAdress(token)
             }
-            return {user:Response,token}
+            return { user:Response, token}
         } catch (error:any) {
             throw new CustonError(error.statusCode, error.message)
         }
@@ -73,7 +73,7 @@ export class UserBusiness {
             this.inputsValidation.Profile(token)
 
             const id = this.authentication.getTokenData(token)
-            const user = await this.userData.Profile(id)
+            const [user] = await this.userData.Profile(id)
             if(!user) {
                 throw new CustonError(409, 'Usuário não encontrado')
             }
@@ -107,8 +107,11 @@ export class UserBusiness {
     }
 
     private tokenError = (errorMessage:string):void => {
-        if(errorMessage.includes('jwt expired')){
-            throw new CustonError(401, 'token expirado')
+        if(errorMessage.includes('jwt expired')) {
+            throw new CustonError(401, 'Token expirado')
+        }
+        if(errorMessage.includes('jwt malformed')) {
+            throw new CustonError(401, 'Token inválido')
         }
     }
 }

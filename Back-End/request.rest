@@ -58,7 +58,22 @@ Content-Type: application/json
 GET http://localhost:3003/adress/full
 Authorization: {{token}}
 
+### Get Restaurants
+GET http://localhost:3003/restaurant/all
+Authorization: {{token}}
+
+### add Products
+GET http://localhost:3003/restaurant/product
+Content-Type: application/json
+
+{   
+    "restaurantId": "1",
+    "id": "5omTFSOBYiTqeiDwhiBx",
+                "name": "Bibsfiha queijo",
+                "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031403_66194479.jpg",
+                "category": "Salgado",
+                "price": 1,
+                "description": "Esfiha deliciosa, receita secreta do Habibs."
+}
+
 ###
-
-
-

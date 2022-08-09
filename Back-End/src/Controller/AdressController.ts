@@ -32,6 +32,10 @@ export class AdressController {
             res.status(error.statusCode || 400).send({error:error.message})
         }
     }
+
+    produto = () => {
+        
+    }
 }
 
 export default new AdressController(adressBusiness)

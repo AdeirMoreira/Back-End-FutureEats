@@ -31,3 +31,28 @@ export interface AdressDTO {
 }
 
 export interface AdressDB extends Omit<AdressDTO, 'token'> { id: string , userId: string }
+
+export interface RestaurantsDB {
+	id: string,
+	logoUrl: string,
+	address: string,
+	name: string,
+	deliveryTime: number,
+	description: string,
+	category: string,
+	shipping: number
+}
+
+export interface TokenDTO { token:string }
+
+export interface DetailDTO extends TokenDTO { id:string }
+
+export interface ProductDB {
+	restaurantId: string
+	id :string 
+	name: string 
+	description: string 
+	price: string
+	category: string
+	photoUrl: string
+}

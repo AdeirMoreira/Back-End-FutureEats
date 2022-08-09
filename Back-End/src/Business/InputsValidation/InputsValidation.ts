@@ -1,5 +1,5 @@
 import { CustonError } from "../../Model/CustonError/CustonError"
-import { AdressDTO, LoginInputDTO, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
+import { AdressDTO, DetailDTO, LoginInputDTO, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
 
 
 export class InputsValidation {
@@ -32,13 +32,28 @@ export class InputsValidation {
         this.AdressData(inputs)
     }
 
-    fullAdress = (token:string):void => {
+    FullAdress = (token:string):void => {
         this.token(token)
+    }
+
+    Restaurants = (token:string):void => {
+        this.token(token)
+    }
+
+    Detail = (inputs:DetailDTO):void => {
+        this.id(inputs.id)
+        this.token(inputs.token)
     }
     
     private token = (token:string | undefined):void => {
         if(!token){
             throw new CustonError(401,'Token inválido')
+        }
+    }
+
+    private id = (id:string):void => {
+        if(!id || typeof(id) !== 'string') {
+            throw new CustonError(422,'Id inválido')
         }
     }
     

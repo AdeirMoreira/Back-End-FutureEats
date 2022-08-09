@@ -37,7 +37,7 @@ export class AdressBusiness {
 
     fullAndress = (token:string) => {
         try {
-            this.inputsValidation.fullAdress(token)
+            this.inputsValidation.FullAdress(token)
 
             const userId = this.authentication.getTokenData(token as string)
             return this.adressData.getAndress(userId)
@@ -52,7 +52,10 @@ export class AdressBusiness {
 
     private tokenError = (errorMessage:string):void => {
         if(errorMessage.includes('jwt expired')) {
-            throw new CustonError(401, 'token expirado')
+            throw new CustonError(401, 'Token expirado')
+        }
+        if(errorMessage.includes('jwt malformed')) {
+            throw new CustonError(401, 'Token inválido')
         }
     }
 }
