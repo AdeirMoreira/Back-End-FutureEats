@@ -31,7 +31,13 @@ export class RestaturantBusiness {
         try {
             this.inputsValidation.Restaurants(inputs.token)
             this.authentication.getTokenData(inputs.token as string)
+
+            const [restaurant] = await this.restaurantData.RestaurantsById(inputs.id)
+            const products = await this.restaurantData.Products(inputs.id)
+
+            restaurant.products = products
             
+            return { restaurant }
         } catch (error:any) {
             this.tokenError(error.message)
             throw new CustonError(error.statusCode,error.message)

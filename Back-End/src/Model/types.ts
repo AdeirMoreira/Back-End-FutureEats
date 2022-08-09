@@ -40,7 +40,8 @@ export interface RestaurantsDB {
 	deliveryTime: number,
 	description: string,
 	category: string,
-	shipping: number
+	shipping: number,
+	products: ProductDB[]
 }
 
 export interface TokenDTO { token:string }
@@ -56,3 +57,4 @@ export interface ProductDB {
 	category: string
 	photoUrl: string
 }
+
