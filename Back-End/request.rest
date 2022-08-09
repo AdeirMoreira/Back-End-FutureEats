@@ -1,0 +1,79 @@
+### SIGNUP
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "CucaBol",
+	"email": "cucabol@email.com",
+	"cpf": "202.070.860-67",
+	"password": "abc123"
+}
+
+### LOGIN
+
+# @name login
+
+POST http://localhost:3003/user/login 
+Content-Type: application/json
+
+{
+    "email": "hulk7@hulk", 
+    "password": "abc123"
+}
+
+###
+
+@token = {{login.response.body.token}}
+
+###
+GET http://localhost:3003/user/profile
+Authorization: {{token}}
+
+### UPDATE PROFILE
+PUT http://localhost:3003/user/update
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "Hulk",
+    "email": "hulk7@hulk",
+    "cpf": "220.370.860-68"
+}
+
+### ADD AND CHANGE ADRESS
+PUT http://localhost:3003/adress
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "street": "R. Afonso Braz",
+    "number": "200",
+    "neighbourhood": "Vila N. Conceição",
+    "city": "São Paulo",
+    "state": "SP",
+    "complement": "71"
+}
+
+### Full adress
+GET http://localhost:3003/adress/full
+Authorization: {{token}}
+
+### Get Restaurants
+GET http://localhost:3003/restaurant/all
+Authorization: {{token}}
+
+### add Products
+GET http://localhost:3003/restaurant/product
+Content-Type: application/json
+
+{   
+    "restaurantId": "1",
+    "id": "5omTFSOBYiTqeiDwhiBx",
+                "name": "Bibsfiha queijo",
+                "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031403_66194479.jpg",
+                "category": "Salgado",
+                "price": 1,
+                "description": "Esfiha deliciosa, receita secreta do Habibs."
+}
+
+###
