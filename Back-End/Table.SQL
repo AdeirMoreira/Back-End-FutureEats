@@ -38,6 +38,18 @@ CREATE TABLE FutureEats_Products (
     category VARCHAR(255) NOT NULL,
     FOREIGN KEY (restaurantId) REFERENCES FutureEats_Restaurants(id)
 );
+CREATE TABLE FutureEats_Order (
+    id VARCHAR(255) PRIMARY KEY,
+    restaurantId VARCHAR(255) NOT NULL,
+    restaurantName VARCHAR(255) NOT NULL,
+    clientId VARCHAR(255) NOT NULL,
+    createdAt BIGINT NOT NULL,
+    expiresAt BIGINT NOT NULL,
+    totalPrice INT NOT NULL,
+    FOREIGN KEY (restaurantId) REFERENCES FutureEats_Restaurants(id),
+    FOREIGN KEY (clientId) REFERENCES FutureEats_User(id)
+    
+);
 INSERT INTO FutureEats_Restaurants (id, logoUrl, address, name, deliveryTime, description, category, shipping)
 VALUES (
     '1',

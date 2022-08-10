@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import restaturantBusiness ,{ RestaturantBusiness } from "../Business/RestaturantsBusiness"
+import restaturantBusiness , { RestaturantBusiness } from "../Business/RestaturantsBusiness"
 import { DetailDTO, TokenDTO } from "../Model/types"
 
 export class RestaturantController {

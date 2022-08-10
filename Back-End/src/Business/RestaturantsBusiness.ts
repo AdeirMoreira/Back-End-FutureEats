@@ -1,22 +1,28 @@
 import restaurantDataBase,{ RestaurantDataBase } from "../Data/RestaurantDataBase"
 import { CustonError } from "../Model/CustonError/CustonError"
-import { DetailDTO, ProductDB, TokenDTO } from "../Model/types"
+import { checkAdressDB, DetailDTO, ProductDB, TokenDTO } from "../Model/types"
 import authentication,{ Authentication } from "../Services/Authentication"
 import inputsValidation,{ InputsValidation } from "./InputsValidation/InputsValidation"
+import adressBusiness from "./AdressBusiness"
 
 
 export class RestaturantBusiness {
     constructor(
         private inputsValidation : InputsValidation,
         private authentication : Authentication,
-        private restaurantData : RestaurantDataBase
-        
+        private restaurantData : RestaurantDataBase,
+        private adressConsult : (token: string) => Promise<checkAdressDB>
     ){}
 
     Restaturants = async (Token:TokenDTO) => {
         try {
-            this.inputsValidation.Restaurants(Token.token)
+            this.inputsValidation.Token(Token.token)
             this.authentication.getTokenData(Token.token as string)
+
+            const hasAddress = await this.adressConsult(Token.token)
+            if(hasAddress.hasAddress === false) {
+                throw new CustonError(401,'Usuário não possui endereço cadastrado')
+            }
 
             const restaurants = await this.restaurantData.Restaurants()
 
@@ -29,9 +35,20 @@ export class RestaturantBusiness {
 
     Detail = async (inputs:DetailDTO) => {
         try {
-            this.inputsValidation.Restaurants(inputs.token)
+            this.inputsValidation.Token(inputs.token)
             this.authentication.getTokenData(inputs.token as string)
+
+            const hasAddress = await this.adressConsult(inputs.token)
+            if(hasAddress.hasAddress === false) {
+                throw new CustonError(401,'Usuário não possui endereço cadastrado')
+            }
+
+            const [restaurant] = await this.restaurantData.RestaurantsById(inputs.id)
+            const products = await this.restaurantData.Products(inputs.id)
+
+            restaurant.products = products
             
+            return { restaurant }
         } catch (error:any) {
             this.tokenError(error.message)
             throw new CustonError(error.statusCode,error.message)
@@ -55,5 +72,6 @@ export class RestaturantBusiness {
 export default new RestaturantBusiness(
     inputsValidation,
     authentication,
-    restaurantDataBase
+    restaurantDataBase,
+    adressBusiness.checkAdress
 )

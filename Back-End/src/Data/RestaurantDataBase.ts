@@ -15,6 +15,42 @@ export class RestaurantDataBase extends BaseDatabase {
         }
     }
 
+    RestaurantsById = async (id:string):Promise<RestaurantsDB[]> => {
+        try {
+            const resultDB:RestaurantsDB[] = await BaseDatabase.connection('FutureEats_Restaurants')
+            .select('*')
+            .where({id})
+
+            return resultDB
+        } catch (error:any) {
+            throw new CustonError(error.statusCode, error.sqlMessage || error.message)
+        }
+    }
+
+    Products = async (restaurantId:string):Promise<ProductDB[]> => {
+        try {
+            const resultDB:ProductDB[] = await BaseDatabase.connection('FutureEats_Products')
+            .select('*')
+            .where({restaurantId})
+
+            return resultDB
+        } catch (error:any) {
+            throw new CustonError(error.statusCode, error.sqlMessage || error.message)
+        }
+    }
+
+    ProductById = async (id:string):Promise<ProductDB[]> => {
+        try {
+            const resultDB:ProductDB[] = await BaseDatabase.connection('FutureEats_Products')
+            .select('*')
+            .where({id})
+
+            return resultDB
+        } catch (error:any) {
+            throw new CustonError(error.statusCode, error.sqlMessage || error.message)
+        }
+    }
+
     produto = async (produto:ProductDB):Promise<void> => {
         try {
             await BaseDatabase.connection('FutureEats_Products')
