@@ -1,5 +1,5 @@
 import { CustonError } from "../../Model/CustonError/CustonError"
-import { AdressDTO, DetailDTO, LoginInputDTO, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
+import { AdressDTO, DetailDTO, LoginInputDTO, PlaceDTO, ProductDTO, ProductObj, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
 
 
 export class InputsValidation {
@@ -29,20 +29,22 @@ export class InputsValidation {
 
     Adress = (inputs:AdressDTO):void => {
         this.token(inputs.token)
-        this.AdressData(inputs)
+        this.adressData(inputs)
     }
 
-    FullAdress = (token:string):void => {
-        this.token(token)
-    }
-
-    Restaurants = (token:string):void => {
+    Token = (token:string):void => {
         this.token(token)
     }
 
     Detail = (inputs:DetailDTO):void => {
         this.id(inputs.id)
         this.token(inputs.token)
+    }
+
+    Place = (inputs:PlaceDTO) => {
+        this.token(inputs.token)
+        this.restaurantId(inputs.restaurantId)
+        this.productsData(inputs.productsDTO)
     }
     
     private token = (token:string | undefined):void => {
@@ -54,6 +56,12 @@ export class InputsValidation {
     private id = (id:string):void => {
         if(!id || typeof(id) !== 'string') {
             throw new CustonError(422,'Id inválido')
+        }
+    }
+
+    private restaurantId = (id:string):void => {
+        if(!id || typeof(id) !== 'string') {
+            throw new CustonError(422,'restaurantId inválido')
         }
     }
     
@@ -96,7 +104,7 @@ export class InputsValidation {
         return emailValid.test(email)
     }
 
-    private AdressData = (inputs:AdressDTO):void => {
+    private adressData = (inputs:AdressDTO):void => {
         delete inputs.token
         Object.values(inputs).forEach(value => {
                 if(!value || typeof(value) !== 'string') {
@@ -104,6 +112,23 @@ export class InputsValidation {
                 }
             }
         )
+    }
+
+    private productsData = (productsData:ProductDTO):void => {
+        if(!Array.isArray(productsData.products)){
+            throw new CustonError(422,'Products deve ser um array')
+        }
+        productsData.products.forEach(product => {
+            if(typeof(product.id) !== 'string'){
+                throw new CustonError(422,'Id de produto inválido')
+            }
+            if(typeof(product.quantity) !== 'number'){
+                throw new CustonError(422,'Quantidade de produto inválido')
+            }
+        })
+        if(productsData.paymentMethod !== 'money' &&  productsData.paymentMethod !== 'creditcard') {
+            throw new CustonError(422,"Payment Method deve ser 'money' ou 'creditcard'")
+        }
     }
 }
 

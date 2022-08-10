@@ -1,9 +1,10 @@
 import adressDataBase, { AdressDataBase } from "../Data/AdressDataBase";
 import { CustonError } from "../Model/CustonError/CustonError";
-import { AdressDB, AdressDTO } from "../Model/types";
+import { AdressDB, AdressDTO, checkAdressDB } from "../Model/types";
 import authentication,{ Authentication} from "../Services/Authentication";
 import idGenerator,{ IdGenerator } from "../Services/IDGenerator";
 import inputsValidation,{ InputsValidation } from "./InputsValidation/InputsValidation";
+
 
 
 export class AdressBusiness {
@@ -11,7 +12,7 @@ export class AdressBusiness {
         private inputsValidation: InputsValidation,
         private idGenerator: IdGenerator,
         private authentication: Authentication,
-        private adressData : AdressDataBase
+        private adressData: AdressDataBase,
     ){}
 
     Adress = async (inputs:AdressDTO) => {
@@ -25,8 +26,8 @@ export class AdressBusiness {
             const id = this.idGenerator.ID()
             const adress:AdressDB = {id, userId ,CEP, street, number, neighbourhood, city, state, complement}
 
-            !userAdress && this.insertAdress(adress)
-            userAdress && this.changeAdress(adress)
+            !userAdress && this.adressData.insert(adress)
+            userAdress && this.adressData.change(adress)
 
             return this.authentication.generateToken({id:userId})
         } catch (error:any) {
@@ -35,20 +36,28 @@ export class AdressBusiness {
         }
     }
 
-    fullAndress = (token:string) => {
+    fullAndress = async (token:string) => {
         try {
-            this.inputsValidation.FullAdress(token)
-
+            this.inputsValidation.Token(token)
             const userId = this.authentication.getTokenData(token as string)
-            return this.adressData.getAndress(userId)
+
+            const  hasAddress  = await this.adressData.getAndress(userId)
+            if(!hasAddress[0]) {
+                throw new CustonError(401,'Usuário não possui endereço cadastrado')
+            }
+
+            return  hasAddress 
         } catch (error:any) {
             throw new CustonError(error.statusCode, error.message)
         }
     }
 
-    private  insertAdress = (adress:AdressDB) => this.adressData.insert(adress)
-
-    private  changeAdress = (adress:AdressDB) => this.adressData.change(adress)
+    checkAdress = async (token:string):Promise<checkAdressDB> => {
+        const [result] =  await this.adressData.getAndress(token)
+        const address = `${result?.street},${result?.number},${result?.neighbourhood},${result?.complement}`
+        if(result) { return { hasAddress: true, address}}
+        else { return { hasAddress: false, address : undefined}}
+    }
 
     private tokenError = (errorMessage:string):void => {
         if(errorMessage.includes('jwt expired')) {
@@ -64,5 +73,5 @@ export default new AdressBusiness(
     inputsValidation,
     idGenerator,
     authentication,
-    adressDataBase
+    adressDataBase,
 )

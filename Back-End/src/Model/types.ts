@@ -15,9 +15,13 @@ export interface UpdateInputDTO extends Omit<SignupInputDTO, 'password'> { token
 
 export interface UpdateUserDB extends Omit<SignupInputDTO, 'token'| 'password'> {id: string}
 
-export interface UserDB extends Omit<SignupInputDTO, 'password'> { id: string, hashPassword:string }
+export interface UserDB extends Omit<SignupInputDTO, 'password'> { 
+	id: string, hashPassword?:string, 
+	hasAddress?: boolean,
+	address?: string | undefined
+}
 
-export interface UserResponse extends Omit<UserDB, 'hashPassword'> { hasAddress: boolean }
+export interface UserResponse extends Omit<UserDB, 'hashPassword'> { hasAddress: boolean, address?: string | undefined }
 
 export interface AdressDTO {
 	CEP: string,
@@ -53,8 +57,34 @@ export interface ProductDB {
 	id :string 
 	name: string 
 	description: string 
-	price: string
+	price: number
 	category: string
 	photoUrl: string
 }
 
+export interface ProductObj {
+	id:string,
+	quantity:number
+}
+
+export interface ProductDTO {
+	products: ProductObj[],
+	paymentMethod: string
+}
+
+export interface PlaceDTO extends TokenDTO { restaurantId: string, productsDTO: ProductDTO }
+
+export interface orderDB {
+	id: string
+	restaurantId: string
+	restaurantName: string
+	clientId: string
+	totalPrice: number
+	createdAt: number
+	expiresAt: number
+}
+
+export interface checkAdressDB {
+	hasAddress: boolean
+	address: string | undefined
+}

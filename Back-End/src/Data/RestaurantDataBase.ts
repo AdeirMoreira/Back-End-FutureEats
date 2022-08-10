@@ -39,6 +39,18 @@ export class RestaurantDataBase extends BaseDatabase {
         }
     }
 
+    ProductById = async (id:string):Promise<ProductDB[]> => {
+        try {
+            const resultDB:ProductDB[] = await BaseDatabase.connection('FutureEats_Products')
+            .select('*')
+            .where({id})
+
+            return resultDB
+        } catch (error:any) {
+            throw new CustonError(error.statusCode, error.sqlMessage || error.message)
+        }
+    }
+
     produto = async (produto:ProductDB):Promise<void> => {
         try {
             await BaseDatabase.connection('FutureEats_Products')

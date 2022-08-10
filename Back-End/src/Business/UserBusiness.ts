@@ -1,6 +1,6 @@
 import userDataBase, { UserDataBase } from "../Data/UserDataBase"
 import { CustonError } from "../Model/CustonError/CustonError"
-import { AdressDB, LoginInputDTO, SignupInputDTO, UpdateInputDTO, UpdateUserDB, UserDB, UserResponse } from "../Model/types"
+import { AdressDB, checkAdressDB, LoginInputDTO, SignupInputDTO, UpdateInputDTO, UpdateUserDB, UserDB, UserResponse } from "../Model/types"
 import authentication, { Authentication } from "../Services/Authentication"
 import hashManager, { HashManager } from "../Services/HashManager"
 import idGenerator, { IdGenerator } from "../Services/IDGenerator"
@@ -15,7 +15,7 @@ export class UserBusiness {
         private hash: HashManager,
         private authentication: Authentication,
         private userData: UserDataBase,
-        private adressConsult: (token: string) => Promise<AdressDB[]>
+        private adressConsult: (token: string) => Promise<checkAdressDB>
     ){}
 
     Signup = async (inputs:SignupInputDTO) => {
@@ -50,17 +50,19 @@ export class UserBusiness {
 
             const [user] = await this.userData.Login(email)
 
-            if(!user || user.email !== email || ( user && !this.hash.compare(password,user.hashPassword))){
+            if(!user || user.email !== email || ( user && !this.hash.compare(password,user.hashPassword as string))){
                 throw new CustonError(401,'Email ou senha incorretos!')
             }
 
             const token = this.authentication.generateToken({id: user.id})
+            const {hasAddress, address} = await this.adressConsult(token)
             const Response:UserResponse = {
                 id: user.id,
                 name: user.name,
                 email: user.email,
                 cpf: user.cpf,
-                hasAddress: await this.checkAdress(token)
+                hasAddress,
+                address
             }
             return { user:Response, token}
         } catch (error:any) {
@@ -78,7 +80,16 @@ export class UserBusiness {
                 throw new CustonError(409, 'Usuário não encontrado')
             }
 
-            return user
+            const {hasAddress, address} = await this.adressConsult(token)
+            const Response:UserResponse = {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                cpf: user.cpf,
+                hasAddress,
+                address
+            }
+            return { user:Response }
         } catch (error:any) {
             this.tokenError(error.message)
             throw new CustonError(error.statusCode, error.message)
@@ -92,19 +103,29 @@ export class UserBusiness {
 
             const id = this.authentication.getTokenData(inputs.token)
             const user:UpdateUserDB = {id,name,email,cpf}
+            const {hasAddress, address} = await this.adressConsult(inputs.token)
+            if(hasAddress === false) {
+                throw new CustonError(401,'Usuário não possui endereço cadastrado')
+            }
 
             await userDataBase.Update(user)
+
+            const Response:UserResponse = {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                cpf: user.cpf,
+                hasAddress,
+                address
+            }
+            return { user:Response }
         } catch (error:any) {
             this.tokenError(error.message)
             throw new CustonError(error.statusCode, error.message)
         }
     }
 
-    private checkAdress = async (token:string):Promise<boolean> => {
-        const [result] = await this.adressConsult(token)
-        if(result) { return true}
-        else { return false}
-    }
+    
 
     private tokenError = (errorMessage:string):void => {
         if(errorMessage.includes('jwt expired')) {
@@ -122,5 +143,5 @@ export default new UserBusiness(
     hashManager,
     authentication,
     userDataBase,
-    adressBusiness.fullAndress
+    adressBusiness.checkAdress
 )
