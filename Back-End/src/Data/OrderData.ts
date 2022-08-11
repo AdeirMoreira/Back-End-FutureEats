@@ -18,7 +18,7 @@ export class OrderData extends BaseDatabase{
     getOrders = async (clientId:string):Promise<orderDB[]> => {
         try {
             const resultDB:orderDB[] = await BaseDatabase.connection(this.tableName)
-            .select('*')
+            .select('totalPrice','restaurantName','createdAt','expiresAt')
             .where({clientId})
             
             return resultDB

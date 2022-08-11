@@ -17,9 +17,9 @@ export class RestaturantBusiness {
     Restaturants = async (Token:TokenDTO) => {
         try {
             this.inputsValidation.Token(Token.token)
-            this.authentication.getTokenData(Token.token as string)
+            const id = this.authentication.getTokenData(Token.token as string)
 
-            const hasAddress = await this.adressConsult(Token.token)
+            const hasAddress = await this.adressConsult(id)
             if(hasAddress.hasAddress === false) {
                 throw new CustonError(401,'Usuário não possui endereço cadastrado')
             }
@@ -36,9 +36,9 @@ export class RestaturantBusiness {
     Detail = async (inputs:DetailDTO) => {
         try {
             this.inputsValidation.Token(inputs.token)
-            this.authentication.getTokenData(inputs.token as string)
+            const id = this.authentication.getTokenData(inputs.token as string)
 
-            const hasAddress = await this.adressConsult(inputs.token)
+            const hasAddress = await this.adressConsult(id)
             if(hasAddress.hasAddress === false) {
                 throw new CustonError(401,'Usuário não possui endereço cadastrado')
             }

@@ -14,7 +14,7 @@ export class RestaturantController {
 
             res.status(200).send(response)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 
@@ -28,7 +28,7 @@ export class RestaturantController {
 
             res.status(200).send(response)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 

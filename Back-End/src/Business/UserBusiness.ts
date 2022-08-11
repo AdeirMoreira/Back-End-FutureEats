@@ -55,7 +55,7 @@ export class UserBusiness {
             }
 
             const token = this.authentication.generateToken({id: user.id})
-            const {hasAddress, address} = await this.adressConsult(token)
+            const {hasAddress, address} = await this.adressConsult(user.id)
             const Response:UserResponse = {
                 id: user.id,
                 name: user.name,
@@ -80,7 +80,7 @@ export class UserBusiness {
                 throw new CustonError(409, 'Usuário não encontrado')
             }
 
-            const {hasAddress, address} = await this.adressConsult(token)
+            const {hasAddress, address} = await this.adressConsult(user.id)
             const Response:UserResponse = {
                 id: user.id,
                 name: user.name,
@@ -103,7 +103,7 @@ export class UserBusiness {
 
             const id = this.authentication.getTokenData(inputs.token)
             const user:UpdateUserDB = {id,name,email,cpf}
-            const {hasAddress, address} = await this.adressConsult(inputs.token)
+            const {hasAddress, address} = await this.adressConsult(id)
             if(hasAddress === false) {
                 throw new CustonError(401,'Usuário não possui endereço cadastrado')
             }
