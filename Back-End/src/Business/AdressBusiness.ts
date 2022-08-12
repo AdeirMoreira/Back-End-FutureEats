@@ -20,7 +20,7 @@ export class AdressBusiness {
     Adress = async (inputs:AdressDTO) => {
         const {CEP, street, number, neighbourhood, city, state, complement, token} = inputs
         try {
-            this.inputsValidation.Adress(inputs)
+            this.inputsValidation.Address(inputs)
 
             const userId = this.authentication.getTokenData(token as string)
             const [userAdress] =  await this.adressData.getAndress(userId)
