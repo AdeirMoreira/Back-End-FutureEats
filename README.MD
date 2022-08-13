@@ -6,6 +6,7 @@
 <a href="#documentação">Documentação</a> |
 <a href="#postmam">Postmam</a> |
 <a href="#features">Features</a> |
+<a href="#modelo">Modelagem</a> |
 <a href="#back">Rodando o back-end</a> |
 <a href="#desenvolvedores">Desenvolvedores</a>
 </p>
@@ -53,7 +54,7 @@ Voçê pode testar a API com Postman.
 
 <h2 id="features">✔️ Features</h2>
 
-A API Possui endPoints para Login, cadastrar usuários e endereço, ver todos os restaurantes, ver os produtos de um restaurante, fazer o pedido, ver o histórico de pedidos e editar cadastro
+A API Possui endPoints para Login, cadastrar e editar usuários e endereço, ver todos os restaurantes, ver os produtos de um restaurante, fazer o pedido, ver o histórico de pedidos.
 
 👤 Login
 - [x] Login com email e senha
@@ -74,7 +75,23 @@ A API Possui endPoints para Login, cadastrar usuários e endereço, ver todos os
 - [x] Ver se há um pedido em andamento
 - [x] Ver o histórico de pedidos do cliente logado 
 
-<h2 id="back"> 🎲 Rodando o Back End (servidor)</h2>
+<h2 id="modelo"> 🎲 Modelagem do banco de dados</h2>
+
+O banco de dados é modelado com 5 entidades: User, Address, Restaurants, Products. Da seguinte forma
+
+→ User - id, nome, email, cpf, hashPassword
+
+→ Address - id, CEP, rua número, bairro, cidade, estado, complemento, id do usuário (chave estrangeira)
+
+→ Restaurants - id, logoUrl, endereço, nome, tempo de entrega, descrição, categoria, taxa de entrega
+
+→ Products - id, preço, fotoUrl, descrição, name, categoria, id do restaurante (chave estrangeira)
+
+→ Pedidos - id, nome do restaurante, horário do pedido, horário da entrega, preço do pedido, id do restaurante(chave estrangeira), id do cliente(chave estrangeira) 
+
+![DataBase Model](https://user-images.githubusercontent.com/98994187/184508625-1ed38e6e-45d9-4ca7-bdee-8c62f248c276.png)
+
+<h2 id="back"> 🖥 Rodando o Back End (servidor)</h2>
 
 ### Pre-Requisitos
 
