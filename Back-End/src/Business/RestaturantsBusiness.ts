@@ -1,6 +1,6 @@
 import restaurantDataBase,{ RestaurantDataBase } from "../Data/RestaurantDataBase"
 import { CustonError } from "../Model/CustonError/CustonError"
-import { checkAdressDB, DetailDTO, ProductDB, TokenDTO } from "../Model/types"
+import { checkAdressDB, DetailDTO, ProductDB } from "../Model/types"
 import authentication,{ Authentication } from "../Services/Authentication"
 import inputsValidation,{ InputsValidation } from "./InputsValidation/InputsValidation"
 import adressBusiness from "./AdressBusiness"
@@ -14,12 +14,12 @@ export class RestaturantBusiness {
         private adressConsult : (token: string) => Promise<checkAdressDB>
     ){}
 
-    Restaturants = async (Token:TokenDTO) => {
+    Restaturants = async (token:string) => {
         try {
-            this.inputsValidation.Token(Token.token)
-            this.authentication.getTokenData(Token.token as string)
+            this.inputsValidation.Token(token)
+            const id = this.authentication.getTokenData(token as string)
 
-            const hasAddress = await this.adressConsult(Token.token)
+            const hasAddress = await this.adressConsult(id)
             if(hasAddress.hasAddress === false) {
                 throw new CustonError(401,'Usuário não possui endereço cadastrado')
             }
@@ -36,14 +36,18 @@ export class RestaturantBusiness {
     Detail = async (inputs:DetailDTO) => {
         try {
             this.inputsValidation.Token(inputs.token)
-            this.authentication.getTokenData(inputs.token as string)
+            const id = this.authentication.getTokenData(inputs.token as string)
 
-            const hasAddress = await this.adressConsult(inputs.token)
+            const hasAddress = await this.adressConsult(id)
             if(hasAddress.hasAddress === false) {
                 throw new CustonError(401,'Usuário não possui endereço cadastrado')
             }
 
             const [restaurant] = await this.restaurantData.RestaurantsById(inputs.id)
+            if(!restaurant) {
+                throw new CustonError(422,'Restaurante não encontrado')
+            }
+
             const products = await this.restaurantData.Products(inputs.id)
 
             restaurant.products = products

@@ -24,7 +24,7 @@ export interface UserDB extends Omit<SignupInputDTO, 'password'> {
 export interface UserResponse extends Omit<UserDB, 'hashPassword'> { hasAddress: boolean, address?: string | undefined }
 
 export interface AdressDTO {
-	CEP: string,
+	CEP?: string,
 	street: string,
 	number: string,
 	neighbourhood: string,
@@ -34,7 +34,7 @@ export interface AdressDTO {
 	token?: string
 }
 
-export interface AdressDB extends Omit<AdressDTO, 'token'> { id: string , userId: string }
+export interface AdressDB extends Omit<AdressDTO, 'token'> { id?: string , userId?: string }
 
 export interface RestaurantsDB {
 	id: string,
@@ -45,7 +45,7 @@ export interface RestaurantsDB {
 	description: string,
 	category: string,
 	shipping: number,
-	products: ProductDB[]
+	products?: ProductDB[]
 }
 
 export interface TokenDTO { token:string }

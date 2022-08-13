@@ -1,12 +1,13 @@
 {
-  "name": "back-end-amaro",
+  "name": "back-end-future-eats",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "clear && ts-node-dev ./src/index.ts",
     "start": "node ./build/src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "tsc"
   },
   "engines": {
     "node": "v16.13.1"

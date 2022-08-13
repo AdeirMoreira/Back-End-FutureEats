@@ -12,11 +12,11 @@ export class OrderController {
         try {
             const inputs:PlaceDTO = { restaurantId, token, productsDTO }
 
-            await this.orderBusiness.Place(inputs)
+            const result = await this.orderBusiness.Place(inputs)
 
-            res.status(200).send()
+            res.status(200).send(result)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({ error: error.message })
+            res.status(error.statusCode || 400).send({ message: error.message })
         }
     }
 
@@ -27,7 +27,7 @@ export class OrderController {
 
             res.status(200).send(result)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({ error: error.message })
+            res.status(error.statusCode || 400).send({ message: error.message })
         }
     }
 
@@ -38,7 +38,7 @@ export class OrderController {
 
             res.status(200).send(result)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({ error: error.message })
+            res.status(error.statusCode || 400).send({ message: error.message })
         }
     }
 }

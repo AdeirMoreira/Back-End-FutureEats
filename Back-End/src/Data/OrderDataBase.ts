@@ -3,7 +3,7 @@ import { orderDB } from "../Model/types";
 import BaseDatabase from "./BaseDataBase";
 
 
-export class OrderData extends BaseDatabase{
+export class OrderDataBase extends BaseDatabase{
     private tableName = 'FutureEats_Order'
 
     Place = async (order:orderDB):Promise<void> => {
@@ -18,7 +18,7 @@ export class OrderData extends BaseDatabase{
     getOrders = async (clientId:string):Promise<orderDB[]> => {
         try {
             const resultDB:orderDB[] = await BaseDatabase.connection(this.tableName)
-            .select('*')
+            .select('totalPrice','restaurantName','createdAt','expiresAt')
             .where({clientId})
             
             return resultDB
@@ -28,4 +28,4 @@ export class OrderData extends BaseDatabase{
     }
 }
 
-export default new OrderData()
+export default new OrderDataBase()

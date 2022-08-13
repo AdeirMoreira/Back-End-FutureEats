@@ -1,5 +1,5 @@
 import { CustonError } from "../../Model/CustonError/CustonError"
-import { AdressDTO, DetailDTO, LoginInputDTO, PlaceDTO, ProductDTO, ProductObj, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
+import { AdressDTO, DetailDTO, LoginInputDTO, PlaceDTO, ProductDTO, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
 
 
 export class InputsValidation {
@@ -27,7 +27,7 @@ export class InputsValidation {
         
     }
 
-    Adress = (inputs:AdressDTO):void => {
+    Address = (inputs:AdressDTO):void => {
         this.token(inputs.token)
         this.adressData(inputs)
     }
@@ -115,8 +115,11 @@ export class InputsValidation {
     }
 
     private productsData = (productsData:ProductDTO):void => {
+        if(!productsData) {
+            throw new CustonError(422,'Products deve ser um array1')
+        }
         if(!Array.isArray(productsData.products)){
-            throw new CustonError(422,'Products deve ser um array')
+            throw new CustonError(422,'Products deve ser um array2')
         }
         productsData.products.forEach(product => {
             if(typeof(product.id) !== 'string'){

@@ -41,7 +41,7 @@ export class UserController {
 
             res.status(200).send(profile)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 
@@ -55,7 +55,7 @@ export class UserController {
             res.statusMessage = 'Ateracao realizada com sucesso!'
             res.status(200).send(result)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 }

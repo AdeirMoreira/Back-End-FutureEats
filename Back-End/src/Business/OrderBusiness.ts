@@ -1,4 +1,4 @@
-import orderData, { OrderData } from "../Data/OrderData"
+import orderData, { OrderDataBase } from "../Data/OrderDataBase"
 import restaurantDataBase from "../Data/RestaurantDataBase"
 import { CustonError } from "../Model/CustonError/CustonError"
 import { checkAdressDB, orderDB, PlaceDTO, ProductDB, RestaurantsDB } from "../Model/types"
@@ -12,7 +12,7 @@ export class OrderBusiness {
         private inputsValidation : InputsValidation,
         private authentication : Authentication,
         private idGenerator : IdGenerator,
-        private orderData : OrderData,
+        private orderData : OrderDataBase,
         private productById : (id: string) => Promise<ProductDB[]>,
         private restaurantById : (id: string) => Promise<RestaurantsDB[]>,
         private adressConsult : (token: string) => Promise<checkAdressDB>
@@ -24,18 +24,19 @@ export class OrderBusiness {
             this.inputsValidation.Place(inputs)
             const clientId = this.authentication.getTokenData(token)
 
-            const hasAddress = await this.adressConsult(inputs.token)
+            const hasAddress = await this.adressConsult(clientId)
             if(hasAddress.hasAddress === false) {
                 throw new CustonError(401,'Usuário não possui endereço cadastrado')
             }
 
-            const Active = await this.Active(token) 
-            if(Active) {
+            const {order} = await this.Active(token)
+            if(order) {
                 throw new CustonError(409, 'Já existe um pedido em andamento')
             }
 
             const [restaurant] = await this.restaurantById(restaurantId)
             if(!restaurant) throw new CustonError(422, 'Restaurante Inválido')
+
             const products = productsDTO.products.map(product => this.productById(product.id))
             const results = (await Promise.all(products))
             .map(product => product[0])
@@ -45,19 +46,20 @@ export class OrderBusiness {
                 throw new CustonError(422, 'Produtos inválidos')
             }
             
-            const id =  this.idGenerator.ID()
             const totalPrice = results.reduce((acc,curr) => {
                 acc += curr.price
                 return acc
             },0)
-            const currentDate = new Date().getTime() - (new Date().getTimezoneOffset() * 60000)
-            const createdAt = currentDate
+            const id =  this.idGenerator.ID()
+            const createdAt = new Date().getTime() - (new Date().getTimezoneOffset() * 60000)
             const expiresAt = createdAt + (restaurant.deliveryTime * 60000)
             const restaurantName = restaurant.name
 
-            const order:orderDB = { id, restaurantId, restaurantName, clientId, createdAt, expiresAt, totalPrice }
+            const orderDB:orderDB = { id, restaurantId, restaurantName, clientId, createdAt, expiresAt, totalPrice }
             
-            await this.orderData.Place(order)
+            await this.orderData.Place(orderDB)
+            const orderActive = { totalPrice, restaurantName, createdAt, expiresAt}
+            return { order: orderActive }
         } catch (error:any) {
             this.tokenError(error.message)
             throw new CustonError(error.statusCode, error.message)
@@ -69,14 +71,13 @@ export class OrderBusiness {
             this.inputsValidation.Token(token)
             const id = this.authentication.getTokenData(token)
 
-            const hasAddress = await this.adressConsult(token)
+            const hasAddress = await this.adressConsult(id)
             if(hasAddress.hasAddress === false) {
                 throw new CustonError(401,'Usuário não possui endereço cadastrado')
             }
 
             const orders = await this.orderData.getOrders(id)
             const active = orders.find(product => this.finalizedOrder(product) === false)
-            
             return { order: active ? active : null }
         } catch (error:any) {
             this.tokenError(error.message)
@@ -89,7 +90,7 @@ export class OrderBusiness {
             this.inputsValidation.Token(token)
             const id = this.authentication.getTokenData(token)
 
-            const hasAddress = await this.adressConsult(token)
+            const hasAddress = await this.adressConsult(id)
             if(hasAddress.hasAddress === false) {
                 throw new CustonError(401,'Usuário não possui endereço cadastrado')
             }

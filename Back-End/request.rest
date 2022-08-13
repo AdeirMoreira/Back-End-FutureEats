@@ -17,7 +17,7 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-    "email": "gatolNegro@email.com", 
+    "email": "hulk7@hulk", 
     "password": "abc123"
 }
 
@@ -35,9 +35,9 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "name": "gatoNegro",
-	"email": "gatolNegro@email.com",
-	"cpf": "801.560.870-81"
+    "name": "Hulk",
+    "email": "hulk7@hulk",
+    "cpf": "220.370.860-68"
 }
 
 ### ADD AND CHANGE ADRESS
@@ -77,21 +77,21 @@ Content-Type: application/json
 }
 
 ### GET RESTAURANTS PRODUCTS
-GET http://localhost:3003/restaurant/detail/2
+GET http://localhost:3003/restaurant/detail/6
 Authorization: {{token}}
 
 ### PLACE ORDER
-POST  http://localhost:3003/order/place/2
+POST  http://localhost:3003/order/place/6
 Authorization: {{token}}
 Content-Type: application/json
 
 {
     "products": [{
-		"id": "ZtdpRkg7KJ0QoN2TDFaA",
+		"id": "GpPdX7xtveRWYPkbE1tD",
 		"quantity": 3
 	}, {
 		"quantity": 2,
-		"id": "QUH0ejMVKcj9N5q7ZLLW"
+		"id": "ylAIpiItf3yXvQtvM5VG"
 	}],
 	"paymentMethod": "money"
 }

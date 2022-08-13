@@ -15,10 +15,10 @@ export class AdressController {
             inputs.CEP = '00000-000'
             //essa linha será removida quando a feature CEP for inplantada no front-end
 
-            const newToken = await this.adressBusiness.Adress(inputs)
-            res.status(200).send({ token: newToken })
+            const response = await this.adressBusiness.Adress(inputs)
+            res.status(200).send(response)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 
@@ -29,7 +29,7 @@ export class AdressController {
 
             res.status(200).send(adress)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 

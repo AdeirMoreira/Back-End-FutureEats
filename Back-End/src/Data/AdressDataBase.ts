@@ -23,7 +23,7 @@ export class AdressDataBase extends BaseDatabase {
         }
     }
 
-    getAndress = async(userId:string) => {
+    getAndress = async(userId:string):Promise<AdressDB[]> => {
         try {
             const resultDB:AdressDB[] =  await BaseDatabase.connection('FutureEats_Adress')
             .select('*')
