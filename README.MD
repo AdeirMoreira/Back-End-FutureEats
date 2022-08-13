@@ -57,12 +57,13 @@ A API Possui endPoints para Login, cadastrar usuários e endereço, ver todos os
 
 👤 Login
 - [x] Login com email e senha
-- [x] Retorna um token de autenticação JSON Web Token
+- [x] Autenticação por token Jsonwebtoken;
+
 
 📝 Cadastro 
 - [x] Cadastro de usuário e de endereço do usuário
 - [x] Editar cadastro de usuário e endereço
-- [x] A senha é encriptada com a liv Bcrpty antes de ser salva no banco de dados
+- [x] Criptografia da senha do tipo hash com Bcrypt
 
 🥡 Restaurante 
 - [x] Ver todos os Restaurantes cadastrados
