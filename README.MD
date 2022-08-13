@@ -34,9 +34,8 @@ Esse é o Back-End do [FutureEats](https://github.com/AdeirMoreira/FutureEats), 
 
 <h2 id="link">🔗 Links</h2>
 
-- ### Link base da API https://adeir-cubo-itau-participation.herokuapp.com/
-- ### Link da Página front-end https://cubo-itau-adeir.surge.sh/
-
+- ### Link base da API 
+- ### Link da Página front-end 
 
 <h2 id="documentação">📃 Documentação</h2>
 
