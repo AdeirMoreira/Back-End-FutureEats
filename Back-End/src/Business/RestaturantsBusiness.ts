@@ -1,6 +1,6 @@
 import restaurantDataBase,{ RestaurantDataBase } from "../Data/RestaurantDataBase"
 import { CustonError } from "../Model/CustonError/CustonError"
-import { checkAdressDB, DetailDTO, ProductDB, TokenDTO } from "../Model/types"
+import { checkAdressDB, DetailDTO, ProductDB } from "../Model/types"
 import authentication,{ Authentication } from "../Services/Authentication"
 import inputsValidation,{ InputsValidation } from "./InputsValidation/InputsValidation"
 import adressBusiness from "./AdressBusiness"
@@ -14,10 +14,10 @@ export class RestaturantBusiness {
         private adressConsult : (token: string) => Promise<checkAdressDB>
     ){}
 
-    Restaturants = async (Token:TokenDTO) => {
+    Restaturants = async (token:string) => {
         try {
-            this.inputsValidation.Token(Token.token)
-            const id = this.authentication.getTokenData(Token.token as string)
+            this.inputsValidation.Token(token)
+            const id = this.authentication.getTokenData(token as string)
 
             const hasAddress = await this.adressConsult(id)
             if(hasAddress.hasAddress === false) {
@@ -44,6 +44,10 @@ export class RestaturantBusiness {
             }
 
             const [restaurant] = await this.restaurantData.RestaurantsById(inputs.id)
+            if(!restaurant) {
+                throw new CustonError(422,'Restaurante não encontrado')
+            }
+
             const products = await this.restaurantData.Products(inputs.id)
 
             restaurant.products = products

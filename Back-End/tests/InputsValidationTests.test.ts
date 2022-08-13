@@ -347,7 +347,6 @@ describe('Test Class inputsValidation', () => {
                 inputs.productsDTO = undefined
                 InputsValidation.Place(inputs)
             } catch (error:any) {
-                console.log(productsBackUp)
                 inputs.productsDTO = productsBackUp
                 expect(error.message).toEqual('Products deve ser um array1')
                 expect(error.statusCode).toStrictEqual(422)
@@ -360,7 +359,6 @@ describe('Test Class inputsValidation', () => {
                 inputs.productsDTO.products[0].quantity = undefined
                 InputsValidation.Place(inputs)
             } catch (error:any) {
-                console.log(productsBackUp)
                 inputs.productsDTO.products[0].quantity = 3
                 expect(error.message).toEqual('Quantidade de produto inválido')
                 expect(error.statusCode).toStrictEqual(422)
@@ -373,7 +371,6 @@ describe('Test Class inputsValidation', () => {
                 inputs.productsDTO.products[0].id = undefined
                 InputsValidation.Place(inputs)
             } catch (error:any) {
-                console.log(productsBackUp)
                 inputs.productsDTO.products[0].id = 'GpPdX7xtveRWYPkbE1tD'
                 expect(error.message).toEqual('Id de produto inválido')
                 expect(error.statusCode).toStrictEqual(422)

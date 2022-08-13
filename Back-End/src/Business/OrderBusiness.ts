@@ -1,4 +1,4 @@
-import orderData, { OrderData } from "../Data/OrderData"
+import orderData, { OrderDataBase } from "../Data/OrderDataBase"
 import restaurantDataBase from "../Data/RestaurantDataBase"
 import { CustonError } from "../Model/CustonError/CustonError"
 import { checkAdressDB, orderDB, PlaceDTO, ProductDB, RestaurantsDB } from "../Model/types"
@@ -12,7 +12,7 @@ export class OrderBusiness {
         private inputsValidation : InputsValidation,
         private authentication : Authentication,
         private idGenerator : IdGenerator,
-        private orderData : OrderData,
+        private orderData : OrderDataBase,
         private productById : (id: string) => Promise<ProductDB[]>,
         private restaurantById : (id: string) => Promise<RestaurantsDB[]>,
         private adressConsult : (token: string) => Promise<checkAdressDB>
@@ -78,7 +78,6 @@ export class OrderBusiness {
 
             const orders = await this.orderData.getOrders(id)
             const active = orders.find(product => this.finalizedOrder(product) === false)
-            
             return { order: active ? active : null }
         } catch (error:any) {
             this.tokenError(error.message)

@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import restaturantBusiness , { RestaturantBusiness } from "../Business/RestaturantsBusiness"
-import { DetailDTO, TokenDTO } from "../Model/types"
+import { DetailDTO } from "../Model/types"
 
 export class RestaturantController {
     constructor( private restaurantBusiness : RestaturantBusiness ){}
@@ -8,9 +8,7 @@ export class RestaturantController {
     Restaturants = async (req:Request,res:Response) => {
         const token = req.headers.authorization as string
         try {
-            const Token:TokenDTO = {token} 
-
-            const response = await this.restaurantBusiness.Restaturants(Token)
+            const response = await this.restaurantBusiness.Restaturants(token)
 
             res.status(200).send(response)
         } catch (error:any) {

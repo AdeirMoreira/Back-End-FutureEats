@@ -3,7 +3,7 @@ import { orderDB } from "../Model/types";
 import BaseDatabase from "./BaseDataBase";
 
 
-export class OrderData extends BaseDatabase{
+export class OrderDataBase extends BaseDatabase{
     private tableName = 'FutureEats_Order'
 
     Place = async (order:orderDB):Promise<void> => {
@@ -28,4 +28,4 @@ export class OrderData extends BaseDatabase{
     }
 }
 
-export default new OrderData()
+export default new OrderDataBase()

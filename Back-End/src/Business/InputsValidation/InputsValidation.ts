@@ -1,5 +1,5 @@
 import { CustonError } from "../../Model/CustonError/CustonError"
-import { AdressDTO, DetailDTO, LoginInputDTO, PlaceDTO, ProductDTO, ProductObj, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
+import { AdressDTO, DetailDTO, LoginInputDTO, PlaceDTO, ProductDTO, SignupInputDTO, UpdateInputDTO } from "../../Model/types"
 
 
 export class InputsValidation {

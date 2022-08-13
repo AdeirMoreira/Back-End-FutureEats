@@ -24,10 +24,12 @@ export class AdressBusiness {
 
             const userId = this.authentication.getTokenData(token as string)
             const [userAdress] =  await this.adressData.getAndress(userId)
+            if(!userAdress) {
+                throw new CustonError(422,'Usuário encontrado')
+            }
             
             const id = this.idGenerator.ID()
             const adress:AdressDB = {id, userId ,CEP, street, number, neighbourhood, city, state, complement}
-
             !userAdress && this.adressData.insert(adress)
             userAdress && this.adressData.change(adress)
 
