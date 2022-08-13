@@ -102,7 +102,7 @@ O banco de dados é modelado com 5 entidades: User, Address, Restaurants, Produc
 ### Como instalar e Rodar
 * Para baixar o projeto
 ```
-1. git clone https://github.com/AdeirMoreira/Full_Stack-Grafico_de_Participacao.git
+1. git clone https://github.com/AdeirMoreira/Back-End-FutureEats.git
 2. cd Back-End-FutureEats
 ```
 * Para instalar e rodar o projeto
