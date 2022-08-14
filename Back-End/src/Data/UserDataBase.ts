@@ -8,7 +8,7 @@ export class UserDataBase extends BaseDatabase {
             await BaseDatabase.connection('FutureEats_User')
             .insert(user)
         } catch (error:any) {
-            this.UniqueDataCheck(error.sqlMessage)
+            error.sqlMessage && this.UniqueDataCheck(error.sqlMessage)
             throw new CustonError(error.statusCode, error.sqlMessage || error.message)
         }
     }

@@ -46,10 +46,17 @@ export class OrderBusiness {
                 throw new CustonError(422, 'Produtos inválidos')
             }
             
-            const totalPrice = results.reduce((acc,curr) => {
-                acc += curr.price
+            const productsAndQuantitys = productsDTO.products.map((a => {
+                const price = results.find(b => a.id === b.id)
+                a.price = price?.price 
+                return a
+            }))
+            const productsPrice = productsAndQuantitys.reduce((acc,curr) => {
+                acc += (curr.price || 0) * curr.quantity 
                 return acc
             },0)
+            const totalPrice = productsPrice + restaurant.shipping
+            
             const id =  this.idGenerator.ID()
             const createdAt = new Date().getTime() - (new Date().getTimezoneOffset() * 60000)
             const expiresAt = createdAt + (restaurant.deliveryTime * 60000)

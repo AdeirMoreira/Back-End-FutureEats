@@ -16,7 +16,7 @@ export class UserController {
             res.statusMessage = 'Cadastro realizado com sucesso!'
             res.status(201).send(response)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 
@@ -30,7 +30,7 @@ export class UserController {
             res.statusMessage = 'Login realizado com sucesso!'
             res.status(200).send(response)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 

@@ -64,7 +64,8 @@ export interface ProductDB {
 
 export interface ProductObj {
 	id:string,
-	quantity:number
+	quantity:number,
+	price?: number
 }
 
 export interface ProductDTO {
