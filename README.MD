@@ -37,7 +37,6 @@ Esse é o Back-End do [FutureEats](https://github.com/AdeirMoreira/FutureEats), 
 - ### Link base da API https://futureeats-backend.herokuapp.com/
 - ### Link da Página front-end https://cubo-itau-adeir.surge.sh/
 
-
 <h2 id="documentação">📃 Documentação</h2>
 
 - Na documentação você encontra todas informações sobre como usar cada endpoint da API. Você pode clicar em "Run in Postman" para testar os endpoints na versão web do postman.
@@ -102,8 +101,8 @@ O banco de dados é modelado com 5 entidades: User, Address, Restaurants, Produc
 ### Como instalar e Rodar
 * Para baixar o projeto
 ```
-1. git https://github.com/AdeirMoreira/Full_Stack-Grafico_de_Participacao.git
-2. cd cd Full_Stack-Grafico_de_Participacao/back-end/
+1. git clone https://github.com/AdeirMoreira/Back-End-FutureEats.git
+2. cd Back-End-FutureEats
 ```
 * Para instalar e rodar o projeto
 ```
