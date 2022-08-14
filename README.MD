@@ -34,13 +34,13 @@ Esse é o Back-End do [FutureEats](https://github.com/AdeirMoreira/FutureEats), 
 
 <h2 id="link">🔗 Links</h2>
 
-- ### Link base da API 
-- ### Link da Página front-end 
+- ### Link base da API https://futureeats-backend.herokuapp.com/
+- ### Link da Página front-end https://cubo-itau-adeir.surge.sh/
 
 <h2 id="documentação">📃 Documentação</h2>
 
 - Na documentação você encontra todas informações sobre como usar cada endpoint da API. Você pode clicar em "Run in Postman" para testar os endpoints na versão web do postman.
-- [Documentação](https://documenter.getpostman.com/view/20351643/VUjLK6oJ)
+- [Documentação](https://documenter.getpostman.com/view/20351643/VUjSGjLL)
 
 
 <h2 id="postmam"> <img src="https://user-images.githubusercontent.com/98994187/182048033-f81fac19-1c26-45c0-96da-a5ffbc0defec.svg" height="20" width="20" alt="javascript logo"  /> Postmam</h2>

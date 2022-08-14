@@ -93,7 +93,7 @@ describe('test UserBusiness methodd' , () => {
         })
     })
     describe('test Update method', () => {
-        test('test miss profile', async () => {
+        test('test user no have address', async () => {
             const inputs = {
                 token: 'idd',
                 name: "test",
@@ -103,7 +103,7 @@ describe('test UserBusiness methodd' , () => {
             try {
                 await UserBusinessMock.Update(inputs)
             } catch (error:any) {
-                expect(error.message).toEqual('Usuário não encontrado')
+                expect(error.message).toEqual('Usuário não possui endereço cadastrado')
                 expect(error.statusCode).toStrictEqual(401)
             } finally {
                 expect.assertions(2)

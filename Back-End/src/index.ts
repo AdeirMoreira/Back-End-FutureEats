@@ -5,6 +5,6 @@ import { RestaurantsRouter } from "./Router/RestaurantsRouter";
 import { UserRouter } from "./Router/UserRouter";
 
 app.use('/user', UserRouter)
-app.use('/adress', AdressRouter)
+app.use('/address', AdressRouter)
 app.use('/restaurant', RestaurantsRouter)
 app.use('/order', OrderRouter)

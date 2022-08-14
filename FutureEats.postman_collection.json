@@ -1,0 +1,1207 @@
+{
+	"info": {
+		"_postman_id": "607bf1be-03ac-44b2-9445-988e6c0a0b83",
+		"name": "FutureEats",
+		"description": "Essa é a API do **FutureEats**  \n[https://futureeats-backend.herokuapp.com/](https://futureeats-backend.herokuapp.com/)\n\n**ATENÇÃO!** EXCETO OS ENDPOINTS DE LOGIN E CADASTRO, TODOS OS OUTROS ENDPOINTS REQUEREM AUTORIZAÇÃO POR TOKEN PASSADO PELO HEADER `Authorization`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20351643"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"email\": \"adeir@email.com\",\r\n\t\"password\": \"abc123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/user/login",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				},
+				"description": "Este endpoint realiza o login de um usuário já cadastrado. Em caso de sucesso, ele retorna as informações do usuário e um token de acesso."
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"adeir@email.com\",\r\n\t\"password\": \"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/user/login",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"status": "Login realizado com sucesso!",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "352"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"160-mRse588PgFENkhl1pPpUeJtNqfA\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:12:27 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"3feb0a23-33e9-4d34-8be9-1b904024a764\",\n        \"name\": \"Adeir Moreira\",\n        \"email\": \"adeir@email.com\",\n        \"cpf\": \"123.456.789-12\",\n        \"hasAddress\": false\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Cadastro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"Adeir Moreira\",\r\n\t\"email\": \"adeir@email.com\",\r\n\t\"cpf\": \"123.456.789-12\",\r\n\t\"password\": \"abc123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/user/signup",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"signup"
+					]
+				},
+				"description": "Este endpoint realiza o cadastro de um novo usuário. Não podem ser criados dois usuários com o mesmo email ou CPF. Todas as informações são obrigatórias. Em caso de sucesso, ele retorna as informações do usuário e um token de acesso.\n\n**ATENÇÃO! MESMO QUE JÁ TENHA UM TOKEN SALVO, DEVE SER SUBSTITUIDO.**"
+			},
+			"response": [
+				{
+					"name": "SignUp",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Adeir Moreira\",\r\n\t\"email\": \"adeir@email.com\",\r\n\t\"cpf\": \"123.456.789-12\",\r\n\t\"password\": \"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/user/signup",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"status": "Cadastro realizado com sucesso!",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "352"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"160-Joi4ULm/83pLaJ+ibe0ZwXFW7bg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:11:36 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"3feb0a23-33e9-4d34-8be9-1b904024a764\",\n        \"name\": \"Adeir Moreira\",\n        \"email\": \"adeir@email.com\",\n        \"cpf\": \"123.456.789-12\",\n        \"hasAddress\": false\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE0OTYsImV4cCI6MTY2MDUyOTQ5Nn0.cq-d87dwfdq2rE-2ZJXSY-7AV5nc4MmgSi8qCHW6kFU\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Cadastrar ou editar endereço",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"complement\": \"casa\",\r\n    \"city\": \"Cidade dos devs\",\r\n    \"street\": \"Rua da API\",\r\n    \"number\": \"1956\",\r\n    \"state\": \"MG\",\r\n    \"neighbourhood\": \"Baixada NodeJS\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/address",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"address"
+					]
+				},
+				"description": "Realiza o **cadastro** ou **edição** do endereço de um usuário.\n\n**ATENÇÃO: Todos os parâmetros devem ser passados, mesmo que não tenham sofrido mudança**\n\n**ATENÇÃO** **Os usuários devem cadastrar um endereço, ou os outros endpoints não funcionarão**\n\n**ATENÇÃO: MESMO QUE VOCÊ JÁ POSSUA UM TOKEN SALVO, VOCÊ DEVE SUBSTITUÍ-LO PELO NOVO TOKEN RETORNADO POR ESSE ENDPOINT.**"
+			},
+			"response": [
+				{
+					"name": "Add Adress",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"complement\": \"casa\",\r\n    \"city\": \"Cidade dos devs\",\r\n    \"street\": \"Rua da API\",\r\n    \"number\": \"1956\",\r\n    \"state\": \"MG\",\r\n    \"neighbourhood\": \"Baixada NodeJS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/address",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"address"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "399"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"18f-pQ6ZwHt8WnuLAw7HiF4S3UqUi+Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:20:12 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"3feb0a23-33e9-4d34-8be9-1b904024a764\",\n        \"name\": \"Adeir Moreira\",\n        \"email\": \"adeir@email.com\",\n        \"cpf\": \"123.456.789-12\",\n        \"hasAddress\": true,\n        \"address\": \"Rua da API,1956,Baixada NodeJS,casa\"\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTIwMTIsImV4cCI6MTY2MDUzMDAxMn0.yNfdqQolRczD8Dt_hxJZMywAme5VJCQHNHWFwZXgMVQ\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Endereço",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTIwMTIsImV4cCI6MTY2MDUzMDAxMn0.yNfdqQolRczD8Dt_hxJZMywAme5VJCQHNHWFwZXgMVQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/address/full",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"address",
+						"full"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Retorna as informações do endereço do usuário."
+			},
+			"response": [
+				{
+					"name": "Get Full Address",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTIwMTIsImV4cCI6MTY2MDUzMDAxMn0.yNfdqQolRczD8Dt_hxJZMywAme5VJCQHNHWFwZXgMVQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/address/full",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"address",
+								"full"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "142"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"8e-RPIjLQrkJQKbsR448trR1rb6aXM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:26:21 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"address\": {\n        \"street\": \"Rua da API\",\n        \"number\": \"1956\",\n        \"neighbourhood\": \"Baixada NodeJS\",\n        \"city\": \"Cidade dos devs\",\n        \"state\": \"MG\",\n        \"complement\": \"casa\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Perfil",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/user/profile",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"profile"
+					]
+				},
+				"description": "Retorna as informações pessoais de um usuário."
+			},
+			"response": [
+				{
+					"name": "Get Profile",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/user/profile",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "192"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"c0-W658uJuTEhG/4QRGZNLjEtQdwYs\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:27:58 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"3feb0a23-33e9-4d34-8be9-1b904024a764\",\n        \"name\": \"Adeir Moreira\",\n        \"email\": \"adeir@email.com\",\n        \"cpf\": \"123.456.789-12\",\n        \"hasAddress\": true,\n        \"address\": \"Rua da API,1956,Baixada NodeJS,casa\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Atualizar Perfil",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Adeir Maia\",\r\n    \"email\": \"adeir.maia@gmail.com\",\r\n    \"cpf\": \"123.456.789-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/user/update",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"update"
+					]
+				},
+				"description": "Atualiza as informações do usuário.\n\n**ATENÇÃO: Todos os parâmetros devem ser passados, mesmo que não tenham sofrido mudança**"
+			},
+			"response": [
+				{
+					"name": "Update Profile",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adeir Maia\",\r\n    \"email\": \"adeir.maia@gmail.com\",\r\n    \"cpf\": \"123.456.789-12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/user/update",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"status": "Ateracao realizada com sucesso!",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "194"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"c2-tFbqMcGt7e19tx2Jst2u02OIDbc\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:32:03 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"3feb0a23-33e9-4d34-8be9-1b904024a764\",\n        \"name\": \"Adeir Maia\",\n        \"email\": \"adeir.maia@gmail.com\",\n        \"cpf\": \"123.456.789-12\",\n        \"hasAddress\": true,\n        \"address\": \"Rua da API,1956,Baixada NodeJS,casa\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Restaurantes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/restaurant/all",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"restaurant",
+						"all"
+					]
+				},
+				"description": "Retorna as informações de todos os restaurantes."
+			},
+			"response": [
+				{
+					"name": "getRestaurants",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/restaurant/all",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"restaurant",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "5080"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"13d8-rFdWyq6O2CBq8BiGLZMk2Fga5sE\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:34:22 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"restaurants\": [\n        {\n            \"id\": \"1\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fhabibs.jpg?alt=media&token=a30ea547-3a3b-4e80-b58e-b8dc976697de\",\n            \"address\": \"Rua das Margaridas, 110 - Jardim das Flores\",\n            \"name\": \"Habibs\",\n            \"deliveryTime\": 60,\n            \"description\": \"Habib's é uma rede de restaurantes de comida rápida brasileira especializada em culinária árabe, os restaurantes vendem mais de 600 milhões de esfirras por ano. A empresa emprega 22 mil colaboradores e tem 421 unidades distribuídas em mais de cem municípios em 20 unidades federativas.\",\n            \"category\": \"Árabe\",\n            \"shipping\": 6\n        },\n        {\n            \"id\": \"10\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Ftadashii.png?alt=media&token=0e4b9b8c-3b6e-4a78-bd49-d3576657a342\",\n            \"address\": \"Travessa Reginaldo Pereira, 130 - Ibitinga\",\n            \"name\": \"Tadashii\",\n            \"deliveryTime\": 50,\n            \"description\": \"Restaurante sofisticado busca o equilíbrio entre ingredientes que realçam a experiência da culinária japonesa.\",\n            \"category\": \"Asiática\",\n            \"shipping\": 13\n        },\n        {\n            \"id\": \"2\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fmcdonalds.png?alt=media&token=87a0fc52-3b8d-4475-b3e4-6ff730356121\",\n            \"address\": \"Avenida dos Papagaios, 1350 - Sta. Efigênia\",\n            \"name\": \"McDonalds\",\n            \"deliveryTime\": 15,\n            \"description\": \"McDonald's Corporation é a maior cadeia mundial de restaurantes de fast food de hambúrguer, servindo cerca de 68 milhões de clientes por dia em 119 países através de 37 mil pontos de venda.\",\n            \"category\": \"Hamburguer\",\n            \"shipping\": 19\n        },\n        {\n            \"id\": \"3\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fcantinamammaperrotta.jpg?alt=media&token=3a4e76b6-3d07-414b-8672-e624f5a10a76\",\n            \"address\": \"Rua Barão do Rio Branco, 98 - Centro\",\n            \"name\": \"Cantina Mamma Perrotta\",\n            \"deliveryTime\": 20,\n            \"description\": \"Restaurante Self Service e lanchonete localizado no Laboratório Nacional de Computação Científica\",\n            \"category\": \"Italiana\",\n            \"shipping\": 2\n        },\n        {\n            \"id\": \"4\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fbaciodilatte.png?alt=media&token=03839175-d9b3-4024-a516-5ce2cbfc6f30\",\n            \"address\": \"Travessa Junqueira de Melo, 315 - Marginal\",\n            \"name\": \"Sorveteria Bacio di Latte\",\n            \"deliveryTime\": 45,\n            \"description\": \"Gelatos de raízes italianas feitos artesanalmente e com ingredientes de altíssima qualidade. Confira todos os nossos deliciosos sabores!\",\n            \"category\": \"Sorvetes\",\n            \"shipping\": 10\n        },\n        {\n            \"id\": \"5\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Foutback.png?alt=media&token=6c3af525-e6f5-4f96-b5d5-a0ad6702a838\",\n            \"address\": \"Alameda dos Marsupiais, 505 - Humaitá\",\n            \"name\": \"Outback Steakhouse\",\n            \"deliveryTime\": 20,\n            \"description\": \"Inaugurado em 1988 nos Estados Unidos e chegou ao Brasil 9 anos depois. Hoje, o restaurante marca presença em 20 cidades em todo o país, com um estilo casual que vai fazer você se sentir no Outback Australiano\",\n            \"category\": \"Carnes\",\n            \"shipping\": 18\n        },\n        {\n            \"id\": \"6\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fsotero.jpg?alt=media&token=c8760cea-f8fc-4f66-b4b3-5c937beb8fe2\",\n            \"address\": \"Rua Dorival Caymmi, 149 - Alto dos Ibirás\",\n            \"name\": \"Sotero Cozinha Original\",\n            \"deliveryTime\": 40,\n            \"description\": \"Culinária baiana, como caldinho de sururu e acarajé, empório nordestino e bar com 400 rótulos de cachaça.\",\n            \"category\": \"Baiana\",\n            \"shipping\": 4\n        },\n        {\n            \"id\": \"7\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fbotecodeportal.jpg?alt=media&token=9b85ef89-0a4b-4390-84b1-858c1d3aafa1\",\n            \"address\": \"Avenida das Andorinhas, 333 - Sta. Efigênia\",\n            \"name\": \"Boteco de Portal\",\n            \"deliveryTime\": 20,\n            \"description\": \"O bar tem um cardápio recheado de petiscos que acompanham o chope para o bate-papo num ambiente agradável.Amigos e amigas, temos o prazer de convidar vocês para conhecer nosso espaço!\",\n            \"category\": \"Petiscos\",\n            \"shipping\": 18\n        },\n        {\n            \"id\": \"8\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fchun-li.jpg?alt=media&token=363418d5-247a-4690-a048-e2633e1346b5\",\n            \"address\": \"Rua Visconde de Mauá, 990 - Centro\",\n            \"name\": \"Chun-Li\",\n            \"deliveryTime\": 30,\n            \"description\": \"Restaurante chinês com pratos típicos em diversos tamanhos, bebidas, ambiente moderno e opções para levar.\",\n            \"category\": \"Asiática\",\n            \"shipping\": 17\n        },\n        {\n            \"id\": \"9\",\n            \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fmexicanissimo.png?alt=media&token=c30a24af-4fce-47d8-9b9f-af7098e2dabe\",\n            \"address\": \"Largo dos Jaguarés, 12 - Nova Bragança\",\n            \"name\": \"Mexicaníssimo\",\n            \"deliveryTime\": 20,\n            \"description\": \"Falar em Mexicaníssimo é falar em comer uma comida tradicional e original mexicana! Diferentemente dos restaurantes tex-mex, aqui você encontra um menu completo tradicionalmente mexicano e com opções para vegetarianos e veganos.\",\n            \"category\": \"Mexicana\",\n            \"shipping\": 3\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Produtos do restaurante",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/restaurant/detail/:restaurantId",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"restaurant",
+						"detail",
+						":restaurantId"
+					],
+					"variable": [
+						{
+							"key": "restaurantId",
+							"value": "6"
+						}
+					]
+				},
+				"description": "Requer autenticação. Deve receber um token de usuário no parâmetro `authorization` do header. Retorna os detalhes de um restaurante, e uma lista dos produtos dele. O id do restaurante deve ser passado na URL por pathParams"
+			},
+			"response": [
+				{
+					"name": "getRestauranstDetails",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/restaurant/detail/:restaurantId",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"restaurant",
+								"detail",
+								":restaurantId"
+							],
+							"variable": [
+								{
+									"key": "restaurantId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3442"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"d72-VqRdUsr47PLdbB2HzvZemYre3GU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:38:21 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"restaurant\": {\n        \"id\": \"6\",\n        \"logoUrl\": \"https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fsotero.jpg?alt=media&token=c8760cea-f8fc-4f66-b4b3-5c937beb8fe2\",\n        \"address\": \"Rua Dorival Caymmi, 149 - Alto dos Ibirás\",\n        \"name\": \"Sotero Cozinha Original\",\n        \"deliveryTime\": 40,\n        \"description\": \"Culinária baiana, como caldinho de sururu e acarajé, empório nordestino e bar com 400 rótulos de cachaça.\",\n        \"category\": \"Baiana\",\n        \"shipping\": 4,\n        \"products\": [\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"8U2UtXAoU22uNSzcPyIP\",\n                \"price\": 71.3,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201801231201_26738574.jpg\",\n                \"description\": \"Sabor único do Nordeste\",\n                \"name\": \"Escondidinho\",\n                \"category\": \"Refeição\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"gHl6vEWPrDyFDTA8biAI\",\n                \"price\": 54.9,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201801231201_36630269.png\",\n                \"description\": \"Sabor único do Nordeste\",\n                \"name\": \"Moqueca\",\n                \"category\": \"Refeição\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"GpPdX7xtveRWYPkbE1tD\",\n                \"price\": 66.6,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201708041058_29736669.png\",\n                \"description\": \"Sabor único do Nordeste\",\n                \"name\": \"Mexidão Baiano\",\n                \"category\": \"Refeição\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"JQJhtzTMtUGfSbBWlswc\",\n                \"price\": 12,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201911231547_ypCK_.jpeg\",\n                \"description\": \"Vem com a gentis\",\n                \"name\": \"Cacildis 600ml\",\n                \"category\": \"Bebida\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"LWsddfL1Nq6TM69o0Hup\",\n                \"price\": 32.5,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201803171413_29736639.jpg\",\n                \"description\": \"Sabor único do Nordeste\",\n                \"name\": \"Casquinha de Siri\",\n                \"category\": \"Acompanhamento\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"pnbS5jgEB2ybL12ttaGD\",\n                \"price\": 49.5,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201708041050_36633656.png\",\n                \"description\": \"Sabor único do Nordeste\",\n                \"name\": \"Porção de carne de fumeiro\",\n                \"category\": \"Acompanhamento\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"q3aMdFbK4aO88lWovho4\",\n                \"price\": 6.9,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/t_medium/pratos/f62f7746-4888-4e81-a9b0-93bf5453c51a/202103180149_woHq_s.jpg\",\n                \"description\": \"Coca cola, Sprite ou Guaraná\",\n                \"name\": \"Refrigerante\",\n                \"category\": \"Bebida\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"sRGOGLgn29XiUZI9kTht\",\n                \"price\": 25.9,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201911231600_L7c8_.jpeg\",\n                \"description\": \"Sabor único do Nordeste\",\n                \"name\": \"Dadinho de Tapioca\",\n                \"category\": \"Acompanhamento\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"WbAmVHIM4K0DbHQ7xI9P\",\n                \"price\": 50.5,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201911231500_O62S_v.jpg\",\n                \"description\": \"Sabor único do Nordeste\",\n                \"name\": \"Vinagrete de polvo\",\n                \"category\": \"Acompanhamento\"\n            },\n            {\n                \"restaurantId\": \"6\",\n                \"id\": \"ylAIpiItf3yXvQtvM5VG\",\n                \"price\": 46.6,\n                \"photoUrl\": \"https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/6afa3787-9ea9-4638-a209-4e42732cf812/201709291058_26736993.jpg\",\n                \"description\": \"Sabor único do Nordeste\",\n                \"name\": \"Baião de Três\",\n                \"category\": \"Refeição\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Fazer Pedido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"products\": [{\r\n\t\t\"id\": \"bkdQhhADMDNfZpOyply8\",\r\n\t\t\"quantity\": 5\r\n\t}],\r\n\t\"paymentMethod\": \"creditcard\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/order/place/:restaurantId",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"order",
+						"place",
+						":restaurantId"
+					],
+					"variable": [
+						{
+							"key": "restaurantId",
+							"value": "5"
+						}
+					]
+				},
+				"description": "Realiza um pedido. O id do restaurante deve ser passado na URL por pathParams. Ele recebe um array de produtos, passado do corpo da requisição, que devem conter somente o id de um produto e quantidade que será pedida. Além disso, o método de pagamento deve ser informado. Os métodos disponíveis são 'money' e 'creditcard'. Não é possível realizar dois pedidos ao mesmo tempo. Para realizar outro pedido, você deve esperar o seu pedido ativo ser concluído."
+			},
+			"response": [
+				{
+					"name": "PlaceOrder",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"products\": [{\r\n\t\t\"id\": \"bkdQhhADMDNfZpOyply8\",\r\n\t\t\"quantity\": 5\r\n\t}],\r\n\t\"paymentMethod\": \"creditcard\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/order/place/:restaurantId",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"order",
+								"place",
+								":restaurantId"
+							],
+							"variable": [
+								{
+									"key": "restaurantId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "120"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"78-/rJt7lFNkVgBETDmveVLqOX3JwY\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:41:57 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"order\": {\n        \"totalPrice\": 432.5,\n        \"restaurantName\": \"Outback Steakhouse\",\n        \"createdAt\": 1660513317485,\n        \"expiresAt\": 1660514517485\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Pedido Ativo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/order/active",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"order",
+						"active"
+					]
+				},
+				"description": "Retorna o pedido ativo do usuário. Se ele não possuir nenhum pedido ativo, retorna `null`. Um pedido fica ativo do momento em que foi realizado até o tempo de entrega do restaurante."
+			},
+			"response": [
+				{
+					"name": "getActiveOrder",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/order/active",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"order",
+								"active"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "120"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"78-/rJt7lFNkVgBETDmveVLqOX3JwY\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:47:02 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"order\": {\n        \"totalPrice\": 432.5,\n        \"restaurantName\": \"Outback Steakhouse\",\n        \"createdAt\": 1660513317485,\n        \"expiresAt\": 1660514517485\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Histórico de pedidos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://futureeats-backend.herokuapp.com/order/history",
+					"protocol": "https",
+					"host": [
+						"futureeats-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"order",
+						"history"
+					]
+				},
+				"description": "Retorna uma lista de todos os pedidos que foram finalizados."
+			},
+			"response": [
+				{
+					"name": "getHistotyOrders",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjNmZWIwYTIzLTMzZTktNGQzNC04YmU5LTFiOTA0MDI0YTc2NCJ9LCJpYXQiOjE2NjA1MTE1NDcsImV4cCI6MTY2MDUyOTU0N30.Gf8QbiwFQ3u666c35aAI4aEogAHaJBZCMFE-h-IWiXQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://futureeats-backend.herokuapp.com/order/history",
+							"protocol": "https",
+							"host": [
+								"futureeats-backend",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"order",
+								"history"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "13"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"d-IWoGUttBo8yTpq9Ete1XlCgSzQY\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 Aug 2022 21:47:58 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"orders\": []\n}"
+				}
+			]
+		}
+	]
+}

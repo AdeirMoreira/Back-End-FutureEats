@@ -23,19 +23,20 @@ export class AdressBusiness {
             this.inputsValidation.Address(inputs)
 
             const userId = this.authentication.getTokenData(token as string)
-            const [userAdress] =  await this.adressData.getAndress(userId)
-            if(!userAdress) {
-                throw new CustonError(422,'Usuário encontrado')
+
+            const [user] = await this.profile(userId)
+            if(!user) {
+                throw new CustonError(422,'Usuário não encontrado')
             }
-            
+
+            const [userAdress] =  await this.adressData.getAndress(userId)
             const id = this.idGenerator.ID()
             const adress:AdressDB = {id, userId ,CEP, street, number, neighbourhood, city, state, complement}
+            
             !userAdress && this.adressData.insert(adress)
             userAdress && this.adressData.change(adress)
 
-            const [user] = await this.profile(userId)
             delete user.hashPassword
-
             const {hasAddress, address} = await this.checkAdress(user.id)
             user.hasAddress = hasAddress
             user.address = address

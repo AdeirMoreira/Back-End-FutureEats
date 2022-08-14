@@ -3,9 +3,9 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-    "name": "gatoNegro",
-	"email": "gatolNegro@email.com",
-	"cpf": "801.560.870-81",
+    "name": "teste",
+	"email": "teste@email",
+	"cpf": "000.000.000-00",
 	"password": "abc123"
 }
 
@@ -17,7 +17,7 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-    "email": "hulk7@hulk", 
+    "email": "teste@email", 
     "password": "abc123"
 }
 
@@ -35,23 +35,23 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "name": "Hulk",
-    "email": "hulk7@hulk",
-    "cpf": "220.370.860-68"
+    "name": "teste",
+    "email": "teste@email",
+    "cpf": "000.000.000-00"
 }
 
 ### ADD AND CHANGE ADRESS
-PUT http://localhost:3003/adress
+PUT http://localhost:3003/address
 Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "street": "R. Afonso Braz",
-    "number": "200",
-    "neighbourhood": "Vila N. Conceição",
-    "city": "São Paulo",
-    "state": "SP",
-    "complement": "71"
+    "street": "Rua",
+    "number": "0",
+    "neighbourhood": "Bairro",
+    "city": "Cidade",
+    "state": "Sâo Paulo",
+    "complement": "casa"
 }
 
 ### Full adress
@@ -61,20 +61,6 @@ Authorization: {{token}}
 ### Get Restaurants
 GET http://localhost:3003/restaurant/all
 Authorization: {{token}}
-
-### add Products
-GET http://localhost:3003/restaurant/product
-Content-Type: application/json
-
-{   
-    "restaurantId": "10",
-    "id": "zgKDJFbJDi8YRm4nm9Nj",
-    "name": "Sushi shiromi",
-    "category": "Refeição",
-    "price": 22.8,
-    "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/51fed2ca-70a6-4069-a203-65536c856035/201801251512_20719050.jpg",
-    "description": "A melhor pedida é japonesa!"
-}
 
 ### GET RESTAURANTS PRODUCTS
 GET http://localhost:3003/restaurant/detail/6

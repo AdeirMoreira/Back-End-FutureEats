@@ -24,7 +24,7 @@ describe('test class AddressBusiness' , () => {
                 address.token = 'idd'
                 await AdressBusinessMock.Adress(address)
             } catch (error:any) {
-                expect(error.message).toBe('Usuário encontrado')
+                expect(error.message).toBe('Usuário não encontrado')
                 expect(error.statusCode).toStrictEqual(422)
             } finally {
                 expect.assertions(2)
