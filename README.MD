@@ -34,8 +34,8 @@ Esse é o Back-End do [FutureEats](https://github.com/AdeirMoreira/FutureEats), 
 
 <h2 id="link">🔗 Links</h2>
 
-- ### Link base da API https://futureeats-backend.herokuapp.com/
-- ### Link da Página front-end https://cubo-itau-adeir.surge.sh/
+- ### Link base da API https://futureeats-backend.herokuapp.com
+- ### Link da Página front-end http://futureeats.adeirmaia.surge.sh/
 
 <h2 id="documentação">📃 Documentação</h2>
 
@@ -48,7 +48,7 @@ Esse é o Back-End do [FutureEats](https://github.com/AdeirMoreira/FutureEats), 
 Voçê pode testar a API com Postman.
 - O Postman é um API Client que facilita aos desenvolvedores criar, compartilhar, testar e documentar APIs. Isso é feito, permitindo aos usuários criar e salvar solicitações HTTP e HTTPs simples e complexas, bem como ler suas respostas.
 - [Download do Postamam](https://www.postman.com/downloads/)
-- [Download do arquivo JSON](https://github.com/future4code/silveira-Adeir-Maia/blob/rodada-cases-semana-(3)/Modulo-6/Semana-24/Cubo-Itau/Cubo-itau.postman_collection.json) para rodar as requições no seu Postmam.
+- [Download do arquivo JSON](https://github.com/AdeirMoreira/Back-End-FutureEats/blob/master/FutureEats.postman_collection.json) para rodar as requições no seu Postmam.
 
 
 <h2 id="features">✔️ Features</h2>
