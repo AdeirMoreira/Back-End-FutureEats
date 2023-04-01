@@ -55,7 +55,7 @@ Content-Type: application/json
 }
 
 ### Full adress
-GET http://localhost:3003/adress/full
+GET http://localhost:3003/address/full
 Authorization: {{token}}
 
 ### Get Restaurants
