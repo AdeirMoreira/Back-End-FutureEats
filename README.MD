@@ -36,8 +36,8 @@ Esse é o Back-End do [FutureEats](https://github.com/AdeirMoreira/FutureEats), 
 
 <h2 id="link">🔗 Links</h2>
 
-- ### Link base da API https://futureeats-backend.herokuapp.com
-- ### Link da Página front-end http://futureeats.adeirmaia.surge.sh/
+- ### Link base da API https://back-end-future-eats.onrender.com
+- ### Link da Página front-end https://front-end-future-eats.vercel.app/
 
 <h2 id="documentação">📃 Documentação</h2>
 
